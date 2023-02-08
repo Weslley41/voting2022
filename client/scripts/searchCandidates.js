@@ -25,11 +25,11 @@ function addCandidate(candidate) {
     tfoot.classList = "visually-hidden";
 
     let candidateRow = document.createElement("tr");
-    candidate.forEach((key, value) => {
+    for (let value of Object.values(candidate)) {
         let candidateData = document.createElement("td");
         candidateData.textContent = value;
         candidateRow.appendChild(candidateData);
-    })
+    }
     table.appendChild(candidateRow);
 }
 
