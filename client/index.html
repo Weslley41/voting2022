@@ -22,23 +22,21 @@
                 <h5 class="card-title text-center mb-0">Results</h5>
             </div>
             <div class="card-body">
-                <form>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-floating mb-3 col-6">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                            <label for="name" class="form-label">Name</label>
-                        </div>
-                        <div class="form-floating col-5">
-                            <select class="form-select" id="filter" name="filter">
-                                <option value="candidate" selected>Candidates</option>
-                                <option value="office">Office</option>
-                                <option value="city">City</option>
-                                <option value="all">All results</option>
-                            </select>
-                            <label for="floatingSelect">Select one filter</label>
-                        </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" autocomplete="off">
+                        <label for="name" class="form-label">Name</label>
                     </div>
-                </form>
+                    <div class="form-floating col-5">
+                        <select class="form-select" id="filter" name="filter">
+                            <option value="candidate" selected>Candidates</option>
+                            <option value="office">Office</option>
+                            <option value="city">City</option>
+                            <option value="all">All results</option>
+                        </select>
+                        <label for="floatingSelect">Select one filter</label>
+                    </div>
+                </div>
 
                 <div class="results">
                     <table class="table table-striped table-hover">
