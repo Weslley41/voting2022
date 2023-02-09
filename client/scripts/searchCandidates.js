@@ -1,52 +1,49 @@
-function getFilters() {
-    let filter = document.getElementById("filter").value;
-    let name = document.getElementById("name").value;
-
-    return { filter, name };
-}
+const baseUrl = window.location.hostname + ':3000';
 
 function searchCandidates() {
     let { filter, name } = getFilters();
-    let baseUrl = window.location.hostname + ':3000';
-    let url = `http://${baseUrl}/candidates?filter=${filter}&name=${name}`;
+    let url = `http://${baseUrl}/${filter}?name=${name}`;
 
     fetch(url)
     .then(response => response.json())
     .then(data => {
         clearTable();
-        data.forEach(candidate => addCandidate(candidate));
+        data.forEach(candidate => addRow(candidate));
     })
     .catch(error => console.error(error));
 }
 
-function addCandidate(candidate) {
-    let table = document.querySelector("tbody");
-    let tfoot = document.querySelector("tfoot");
-    tfoot.classList = "visually-hidden";
+function searchSelectOptions() {
+    let filter = getFilters().filter;
+    let select = document.getElementById('name');
+    let url = `http://${baseUrl}/list/${filter}`
 
-    let candidateRow = document.createElement("tr");
-    for (let value of Object.values(candidate)) {
-        let candidateData = document.createElement("td");
-        candidateData.textContent = value;
-        candidateRow.appendChild(candidateData);
-    }
-    table.appendChild(candidateRow);
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        select.innerHTML = '';  
+        data.forEach(option => {
+            let newOption = createSelectOption(option);
+            select.appendChild(newOption);
+        });
+    });
 }
 
-function clearTable() {
-    let table = document.querySelector("tbody");
-    let tfoot = document.querySelector("tfoot");
+function createSelectOption(option) {
+    let newOption = document.createElement('option');
+    newOption.innerText = option.nome;
+    newOption.value = option.nome;
 
-    table.innerHTML = "";
-    tfoot.classList.remove("visually-hidden");
+    return newOption;
 }
 
 function setup() {
-    let inputName = document.getElementById("name");
+    let selectName = document.getElementById("name");
     let filterName = document.getElementById("filter");
 
-    inputName.addEventListener("input", searchCandidates);
-    filterName.addEventListener("change", searchCandidates);
+    selectName.addEventListener("change", searchCandidates);
+    filterName.addEventListener("change", searchSelectOptions);
+    searchSelectOptions();
 }
 
 window.addEventListener("load", setup);

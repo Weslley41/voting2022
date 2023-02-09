@@ -24,14 +24,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="form-floating mb-3 col-6">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" autocomplete="off">
+                        <select class="form-control" id="name" name="name" placeholder="Name" autocomplete="off"></select>
                         <label for="name" class="form-label">Name</label>
                     </div>
                     <div class="form-floating col-5">
                         <select class="form-select" id="filter" name="filter">
-                            <option value="candidate" selected>Candidates</option>
-                            <option value="office">Office</option>
-                            <option value="city">City</option>
+                            <option value="candidates" selected>Candidates</option>
+                            <option value="offices">Office</option>
+                            <option value="cities">City</option>
                             <option value="all">All results</option>
                         </select>
                         <label for="floatingSelect">Select one filter</label>
@@ -44,8 +44,8 @@
                             <tr>
                                 <th scope="col" class="col-5">Name</th>
                                 <th scope="col" class="col-3">Office</th>
-                                <th scope="col" class="col-3">City</th>
-                                <th scope="col" class="col-1">Votes</th>
+                                <th scope="col" class="col-2">Votes</th>
+                                <th scope="col" class="col-2">Status</th>
                             </tr>
                         </thead>
 
@@ -70,6 +70,7 @@
         </a>
     </footer>
 
+    <script src="scripts/createTable.js"></script>
     <script src="scripts/searchCandidates.js"></script>
 </body>
 </html>
