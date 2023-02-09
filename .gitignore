@@ -1,0 +1,8 @@
+# vscode files
+.vscode/
+
+# dependencies
+node_modules/
+
+# exame pdf
+prog3-aval2.pdf
