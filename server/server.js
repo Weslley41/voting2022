@@ -1,7 +1,7 @@
 var express = require('express');
 const { searchCandidates } = require('./candidates');
-const { searchCities, getCitiesList} = require('./cities');
-const { searchOffices, getOfficesList } = require('./offices');
+const { searchByCity, getCitiesList} = require('./cities');
+const { searchByOffice, getOfficesList } = require('./offices');
 
 var app = express();
 var host = 'localhost';
@@ -11,8 +11,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/candidates', searchCandidates);
-app.get('/offices', searchOffices);
-app.get('/cities', searchCities);
+app.get('/offices', searchByOffice);
+app.get('/cities', searchByCity);
 app.get('/list/offices', getOfficesList);
 app.get('/list/cities', getCitiesList);
 

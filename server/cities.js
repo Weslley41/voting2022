@@ -1,6 +1,6 @@
-const sqlite3 = require('./database.js');
+const { getData } = require("./queries.js");
 
-function searchCities(request, response) {
+async function searchByCity(request, response) {
     response.header("Access-Control-Allow-Origin", "http://localhost:8000");
 
     const name = request.query.name;
@@ -10,20 +10,11 @@ function searchCities(request, response) {
         WHERE muni_nome = '${name}'
     `;
 
-    console.log(sql);
-
-    sqlite3.db.all(
-        sql, (errors, rows) => {
-            if (errors) {
-                throw Error(errors.message);
-            }
-
-            response.json(rows);
-        }
-    );
+    let data = await getData(sql);
+    response.json(data);
 }
 
-function getCitiesList(request, response) {
+async function getCitiesList(request, response) {
     response.header("Access-Control-Allow-Origin", "http://localhost:8000");
 
     const sql = `
@@ -31,15 +22,8 @@ function getCitiesList(request, response) {
         ORDER BY nome
     `;
 
-    sqlite3.db.all(
-        sql, (errors, rows) => {
-            if (errors) {
-                throw Error(errors.message);
-            }
-
-            response.json(rows);
-        }
-    );
+    let data = await getData(sql);
+    response.json(data);
 }
 
-module.exports = { searchCities, getCitiesList }
+module.exports = { searchByCity, getCitiesList };
