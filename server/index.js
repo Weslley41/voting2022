@@ -1,7 +1,7 @@
 var express = require('express');
-const { searchCandidates } = require('./candidates');
-const { searchByCity, getCitiesList} = require('./cities');
-const { searchByOffice, getOfficesList } = require('./offices');
+const { searchCandidates } = require('./queries/candidates');
+const { searchByCity, getCitiesList } = require('./queries/cities');
+const { searchByOffice, getOfficesList } = require("./queries/offices");
 
 var app = express();
 var host = 'localhost';

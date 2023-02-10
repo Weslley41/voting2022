@@ -1,4 +1,4 @@
-const { getData } = require("./queries.js");
+const { getData } = require("./getData.js");
 
 async function searchByCity(request, response) {
     response.header("Access-Control-Allow-Origin", "http://localhost:8000");

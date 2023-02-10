@@ -1,4 +1,4 @@
-const sqlite3 = require('./database.js');
+const sqlite3 = require("./database.js");
 
 function getData(sql) {
     return new Promise((resolve) => {
