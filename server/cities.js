@@ -9,6 +9,7 @@ async function searchByCity(request, response) {
         SELECT cand_nome, cand_status AS 'cargo_nome' , cand_votos, cargo_nome AS 'cand_status'
         FROM votos_cand_municipio
         WHERE muni_nome = '${name}'
+        ORDER BY cand_votos DESC
     `;
 
     let data = await getData(sql);

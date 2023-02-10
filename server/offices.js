@@ -8,6 +8,7 @@ async function searchByOffice(request, response) {
         SELECT cand_nome, cargo_nome, cand_votos, cand_status
         FROM votos_cand_estado
         WHERE cargo_nome = '${name}'
+        ORDER BY cand_votos DESC
     `;
 
     let data = await getData(sql);
