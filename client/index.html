@@ -24,7 +24,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="form-floating mb-3 col-6">
-                        <select class="form-control" id="name" name="name" placeholder="Name" autocomplete="off"></select>
+                        <input class="form-control" id="inputName" name="name" placeholder="Name" autocomplete="off">
+                        <select class="form-control visually-hidden" id="selectName" name="name" placeholder="Name" autocomplete="off"></select>
                         <label for="name" class="form-label">Name</label>
                     </div>
                     <div class="form-floating col-5">
@@ -32,7 +33,6 @@
                             <option value="candidates" selected>Candidates</option>
                             <option value="offices">Office</option>
                             <option value="cities">City</option>
-                            <option value="all">All results</option>
                         </select>
                         <label for="floatingSelect">Select one filter</label>
                     </div>

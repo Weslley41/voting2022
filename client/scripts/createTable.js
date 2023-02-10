@@ -1,7 +1,8 @@
-
 function getFilters() {
   let filter = document.getElementById("filter").value;
-  let name = document.getElementById("name").value;
+  let input = document.getElementById("inputName").value;
+  let select = document.getElementById("selectName").value;
+  let name = select || input;
 
   return { filter, name };
 }

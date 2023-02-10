@@ -15,7 +15,7 @@ function searchCandidates() {
 
 function searchSelectOptions() {
     let filter = getFilters().filter;
-    let select = document.getElementById('name');
+    let select = document.getElementById('selectName');
     let url = `http://${baseUrl}/list/${filter}`
 
     fetch(url)
@@ -26,6 +26,7 @@ function searchSelectOptions() {
             let newOption = createSelectOption(option);
             select.appendChild(newOption);
         });
+        searchCandidates();
     });
 }
 
@@ -37,13 +38,32 @@ function createSelectOption(option) {
     return newOption;
 }
 
+function onChangeFilter() {
+    const FOR_SELECT = ['offices', 'cities'];
+    let filter = getFilters().filter;
+    
+    let inputName = document.getElementById('inputName');
+    let selectName = document.getElementById('selectName');
+    if (FOR_SELECT.includes(filter)) {
+        selectName.classList.remove('visually-hidden');
+        inputName.classList.add('visually-hidden');
+        inputName.value = '';
+        searchSelectOptions();
+    } else {
+        inputName.classList.remove('visually-hidden');
+        selectName.classList.add('visually-hidden');
+        selectName.value = '';
+    }
+}
+
 function setup() {
-    let selectName = document.getElementById("name");
+    let inputName = document.getElementById("inputName");
+    let selectName = document.getElementById("selectName");
     let filterName = document.getElementById("filter");
 
+    inputName.addEventListener("input", searchCandidates);
     selectName.addEventListener("change", searchCandidates);
-    filterName.addEventListener("change", searchSelectOptions);
-    searchSelectOptions();
+    filterName.addEventListener("change", onChangeFilter);
 }
 
 window.addEventListener("load", setup);
