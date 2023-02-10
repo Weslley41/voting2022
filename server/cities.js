@@ -4,8 +4,9 @@ async function searchByCity(request, response) {
     response.header("Access-Control-Allow-Origin", "http://localhost:8000");
 
     const name = request.query.name;
+    // The fields 'cand_status' and 'cargo_nome' are inverted in the table
     const sql = `
-        SELECT cand_nome, cargo_nome, cand_votos, cand_status
+        SELECT cand_nome, cand_status AS 'cargo_nome' , cand_votos, cargo_nome AS 'cand_status'
         FROM votos_cand_municipio
         WHERE muni_nome = '${name}'
     `;
