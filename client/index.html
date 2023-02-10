@@ -12,29 +12,43 @@
 <body class="min-vh-100 d-flex flex-column justify-content-between">
     <nav class="navbar bg-success">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1 text-white">Piauí Voting 2022</span>
+            <span class="navbar-brand mb-0 h1 text-white">Piauí Votações 2022</span>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button onclick="onChangePage('home')" type="button" class="btn btn-outline-success text-white">Página Principal</button>
+                <button onclick="onChangePage('total')" type="button" class="btn btn-outline-success text-white">Resultado Geral</button>
+            </div>
         </div>
     </nav>
 
     <main class="container h-75 my-5 d-flex flex-column justify-content-end align-items-center">
         <div class="card col-12 col-md-10 col-lg-8">
             <div class="card-header bg-success text-white">
-                <h5 class="card-title text-center mb-0">Results</h5>
+                <h5 class="card-title text-center mb-0">Resultado</h5>
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <div class="form-floating mb-3 col-6">
+                    <div id="inputDiv" class="form-floating mb-3 col-6">
                         <input class="form-control" id="inputName" name="name" placeholder="Name" autocomplete="off">
                         <select class="form-control visually-hidden" id="selectName" name="name" placeholder="Name" autocomplete="off"></select>
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">Nome</label>
                     </div>
-                    <div class="form-floating col-5">
+                    <div id="selectDiv" class="form-floating col-5">
                         <select class="form-select" id="filter" name="filter">
-                            <option value="candidates" selected>Candidates</option>
-                            <option value="offices">Office</option>
-                            <option value="cities">City</option>
+                            <option value="candidates" selected>Candidato</option>
+                            <option value="offices">Cargo</option>
+                            <option value="cities">Cidade</option>
                         </select>
-                        <label for="floatingSelect">Select one filter</label>
+                        <label for="floatingSelect">Selecione um filtro</label>
+                    </div>
+                    <div id="btnGroup" class="form-floating mx-auto mb-3 visually-hidden">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+							<input onclick="searchCandidates('all')" type="radio" name="elected" class="btn-check" id="all" checked>
+                            <label class="btn btn-outline-success" for="all">Todos</label> 
+							<input onclick="searchCandidates('yes')" type="radio" name="elected" class="btn-check" id="elected">
+                            <label class="btn btn-outline-success" for="elected">Eleitos</label> 
+							<input onclick="searchCandidates('no')" type="radio" name="elected" class="btn-check" id="notElected">
+                            <label class="btn btn-outline-success" for="notElected">Não Eleitos</label> 
+						</div>
                     </div>
                 </div>
 
@@ -42,9 +56,9 @@
                     <table class="table table-striped table-hover">
                         <thead class="bg-success text-white">
                             <tr>
-                                <th scope="col" class="col-5">Name</th>
-                                <th scope="col" class="col-3">Office</th>
-                                <th scope="col" class="col-2">Votes</th>
+                                <th scope="col" class="col-5">Nome</th>
+                                <th scope="col" class="col-3">Cargo</th>
+                                <th scope="col" class="col-2">Votos</th>
                                 <th scope="col" class="col-2">Status</th>
                             </tr>
                         </thead>
@@ -54,7 +68,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="4" class="text-center">
-                                    No results.
+                                    Sem resultado.
                                 </td>
                             </tr>
                         </tfoot>
@@ -66,7 +80,7 @@
 
     <footer>
         <a class="nav-link py-3 text-center text-success" href="https://github.com/Weslley41/voting2022" target="_blank">
-            Developed by <i class="bi bi-github"></i>/Weslley41 & <i class="bi bi-github"></i>/DuckAllLife
+            Desenvolvido por <i class="bi bi-github"></i>/Weslley41 & <i class="bi bi-github"></i>/DuckAllLife
         </a>
     </footer>
 

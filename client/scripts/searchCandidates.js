@@ -1,8 +1,14 @@
 const baseUrl = window.location.hostname + ':3000';
 
-function searchCandidates() {
-    let { filter, name } = getFilters();
-    let url = `http://${baseUrl}/${filter}?name=${name}`;
+function searchCandidates(byResult = false) {
+
+    if (byResult) {
+        var url = `http://${baseUrl}/candidates?elected=${byResult}`;
+    }
+    else{
+        let { filter, name } = getFilters();
+        var url = `http://${baseUrl}/${filter}?name=${name}`;
+    }
 
     fetch(url)
     .then(response => response.json())
@@ -67,3 +73,21 @@ function setup() {
 }
 
 window.addEventListener("load", setup);
+
+function onChangePage(page) {
+    
+    let inputDiv = document.getElementById('inputDiv');
+    let selectDiv = document.getElementById('selectDiv');
+    let btnGroup = document.getElementById('btnGroup');
+
+    if (page === "home") {
+        inputDiv.classList.remove('visually-hidden');
+        selectDiv.classList.remove('visually-hidden');
+        btnGroup.classList.add('visually-hidden');
+    } else {
+        btnGroup.classList.remove('visually-hidden');
+        inputDiv.classList.add('visually-hidden');
+        selectDiv.classList.add('visually-hidden');
+        searchCandidates('all');
+    }
+}
