@@ -1,20 +1,29 @@
 const baseUrl = window.location.hostname + ':3000';
 
 function searchCandidates(byResult = false) {
-
+    var byCity = false 
     if (byResult) {
         var url = `http://${baseUrl}/candidates?elected=${byResult}`;
-    }
-    else{
+    } else {
         let { filter, name } = getFilters();
         var url = `http://${baseUrl}/${filter}?name=${name}`;
+        byCity = filter === 'cities' ? true : false;
     }
 
     fetch(url)
     .then(response => response.json())
     .then(data => {
         clearTable();
-        data.forEach(candidate => addRow(candidate));
+        if (byCity) {
+            var countVotes = 0;
+            data.forEach(candidate => {
+                countVotes += candidate.cand_votos;
+                addRow(candidate);
+            });
+            addRowVotes(countVotes);
+        } else {
+            data.forEach(candidate => addRow(candidate));
+        }
     })
     .catch(error => console.error(error));
 }
@@ -61,18 +70,6 @@ function onChangeFilter() {
         selectName.value = '';
     }
 }
-
-function setup() {
-    let inputName = document.getElementById("inputName");
-    let selectName = document.getElementById("selectName");
-    let filterName = document.getElementById("filter");
-
-    inputName.addEventListener("input", searchCandidates);
-    selectName.addEventListener("change", searchCandidates);
-    filterName.addEventListener("change", onChangeFilter);
-}
-
-window.addEventListener("load", setup);
 
 function onChangePage(page) {
     

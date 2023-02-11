@@ -28,12 +28,12 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div id="inputDiv" class="form-floating mb-3 col-6">
-                        <input class="form-control" id="inputName" name="name" placeholder="Name" autocomplete="off">
-                        <select class="form-control visually-hidden" id="selectName" name="name" placeholder="Name" autocomplete="off"></select>
+                        <input class="form-control" oninput="searchCandidates()" id="inputName" name="name" placeholder="Name" autocomplete="off">
+                        <select class="form-control visually-hidden" onchange="searchCandidates()" id="selectName" name="name" placeholder="Name" autocomplete="off"></select>
                         <label for="name" class="form-label">Nome</label>
                     </div>
                     <div id="selectDiv" class="form-floating col-5">
-                        <select class="form-select" id="filter" name="filter">
+                        <select class="form-select" onchange="onChangeFilter()" id="filter" name="filter">
                             <option value="candidates" selected>Candidato</option>
                             <option value="offices">Cargo</option>
                             <option value="cities">Cidade</option>

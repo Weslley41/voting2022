@@ -23,6 +23,23 @@ function addRow(candidate) {
   table.appendChild(row);
 }
 
+function addRowVotes(votes) {
+  let table = document.querySelector("tbody");
+  let row = document.createElement("tr");
+
+  let tdLabel = document.createElement("td");
+  tdLabel.textContent = 'TOTAL DE VOTOS';
+  tdLabel.colSpan = 2;
+
+  let tdVotes = document.createElement("td");
+  tdVotes.textContent = votes;
+  tdVotes.colSpan = 2;
+
+  row.appendChild(tdLabel);
+  row.appendChild(tdVotes);
+  table.appendChild(row);
+}
+
 function clearTable() {
   let table = document.querySelector("tbody");
   let tfoot = document.querySelector("tfoot");
