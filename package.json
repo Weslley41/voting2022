@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node server/index.js",
-    "client": "node client/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node server/",
+    "client": "node client/",
+    "dev": "nodemon server/"
   },
   "keywords": [],
   "author": "",
